@@ -59,12 +59,19 @@ public class JwtUtil {
             Date expTime = new Date(expMillis);
             // 创建tocken构建器实例
             JwtBuilder jwtBuilder = Jwts.builder()
+                    // 设置自己的私有声明
                     .setClaims(claims)
+                    // 设置该tocken的Id，用于防止tocken重复
                     .setId(UUID.randomUUID().toString())
+                    // 设置签发者
                     .setIssuer("FUQI-PC")
+                    // 设置签发时间
                     .setIssuedAt(nowTime)
+                    // 设置过期时间
                     .setExpiration(expTime)
+                    // 设置tocken的签发对象
                     .setSubject("users")
+                    // 设置签发算法和密钥
                     .signWith(signatureAlgorithm, key);
             return jwtBuilder.compact();
         } catch (Exception e) {
