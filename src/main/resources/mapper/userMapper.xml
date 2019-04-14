@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springboot.jwtdemo2.mapper.UserMapper">
+    
+    <select id="findByUsername" resultType="com.springboot.jwtdemo2.pojo.User">
+        SELECT
+        id           AS "userId",
+        user_name    AS "username",
+        password     AS "password"
+        FROM jwt_user
+        WHERE
+        user_name = #{username}
+        LIMIT 1
+    </select>
+
+    <select id="findById" resultType="com.springboot.jwtdemo2.pojo.User">
+        SELECT
+        id           AS "userId",
+        user_name    AS "username",
+        password     AS "password"
+        FROM jwt_user
+        WHERE
+        id = #{userId}
+        LIMIT 1
+    </select>
+</mapper>
